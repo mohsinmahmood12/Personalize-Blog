@@ -1,99 +1,166 @@
-# Personalize-Blog
+# BlogWise AI
 
-Personalize-Blog is an AI-powered platform designed to generate engaging, personalized blogs based on trending topics that matter to you. With a seamless backend architecture and advanced AI algorithms, this project empowers users to stay informed and inspired by tailored content.
+![License](https://img.shields.io/badge/license-MIT-green)
+![Python](https://img.shields.io/badge/python-3.8+-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.68+-purple)
+![Docker](https://img.shields.io/badge/docker-powered-blue)
 
-## Features
+BlogWise AI is an intelligent content generation platform that creates personalized blog posts using state-of-the-art AI algorithms. By analyzing trending topics and user preferences, it delivers engaging, contextually relevant content at scale.
 
-- **Personalized Content**: Generate blogs based on your interests and trending topics.
-- **AI-Driven**: Leverages cutting-edge AI to ensure dynamic and relevant content creation.
-- **Scalable Architecture**: Built with robust tools like Celery for task management and Poetry for streamlined dependency management.
-- **Dockerized**: Easily deploy the project with Docker and docker-compose for a hassle-free setup.
-- **Testing Framework**: Includes a comprehensive testing suite for ensuring code quality and reliability.
+[Live Demo](https://blogwise-ai.demo.com) | [Documentation](https://docs.blogwise-ai.com) | [API Reference](https://api.blogwise-ai.com)
 
-## Project Structure
+## ✨ Features
+
+- 🤖 **AI-Powered Content**: Advanced NLP models for high-quality content generation
+- 📊 **Trend Analysis**: Real-time monitoring of trending topics
+- 🎯 **Smart Personalization**: Learning algorithms adapt to user preferences
+- 🚀 **High Performance**: Async processing with FastAPI and Celery
+- 🔒 **Security**: Built-in authentication and rate limiting
+- 📱 **API-First**: RESTful API design with comprehensive documentation
+
+## 🏗️ Architecture
+
+```mermaid
+graph LR
+    A[Client] --> B[FastAPI]
+    B --> C[Celery Workers]
+    C --> D[AI Engine]
+    D --> E[Content Generator]
+    B --> F[PostgreSQL]
+    C --> G[Redis]
+```
+
+## 🛠️ Tech Stack
+
+- **Backend**: FastAPI, Python 3.8+
+- **AI/ML**: TensorFlow, spaCy, Hugging Face Transformers
+- **Task Queue**: Celery, Redis
+- **Database**: PostgreSQL
+- **Infrastructure**: Docker, Docker Compose
+- **Package Management**: Poetry
+- **Testing**: Pytest, Coverage
+
+## 📁 Project Structure
 
 ```
-Personalize-Blog/
-├── content_gpt_backend/
-│   ├── celery_worker.py    # Celery worker configurations
-│   ├── main.py            # Main application server
-│   ├── tasks/            # AI tasks and background jobs
-│   ├── utils/            # Utility scripts
-├── tests/                # Test cases and testing framework
-├── docker-compose.yaml    # Docker configuration
-├── poetry.lock           # Dependency lockfile
-├── pyproject.toml        # Poetry project configuration
-└── README.md            # Project documentation
+blogwise-ai/
+├── api/
+│   ├── main.py           # FastAPI application
+│   ├── routers/          # API endpoints
+│   ├── models/           # Database models
+│   └── services/         # Business logic
+├── ai/
+│   ├── engine.py         # AI processing core
+│   ├── models/           # ML models
+│   └── processors/       # Content processors
+├── workers/
+│   ├── celery.py         # Celery configuration
+│   └── tasks/            # Background tasks
+├── tests/                # Test suite
+├── docker/               # Docker configurations
+├── scripts/              # Utility scripts
+├── docker-compose.yml
+├── poetry.lock
+└── pyproject.toml
 ```
 
-## Prerequisites
+## 🚀 Quick Start
 
-- **Python**: Ensure Python 3.8+ is installed.
-- **Poetry**: Dependency management tool.
-- **Docker**: For containerized deployment.
-- **Redis**: Required for Celery task queue.
+### Prerequisites
 
-## Installation and Setup
+- Python 3.8+
+- Docker and Docker Compose
+- Poetry
+- PostgreSQL
+- Redis
+
+### Local Development
 
 1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/mohsinmahmood12/Personalize-Blog.git
-   cd Personalize-Blog
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   poetry install
-   ```
-
-3. **Set up the environment variables**:
-   Create a `.env` file in the root directory and add the required configuration.
-
-4. **Run database migrations** (if applicable):
-   ```bash
-   poetry run python3 content_gpt_backend/manage.py migrate
-   ```
-
-## Commands
-
-### Running Celery Worker
-
-Run the Celery worker for handling background tasks:
 ```bash
-cd content_gpt_backend && poetry run python3 -m celery -A content_gpt_backend.celery_worker worker --concurrency=2 --loglevel=info
+git clone https://github.com/yourusername/blogwise-ai.git
+cd blogwise-ai
 ```
 
-### Running the Main Server
-
-Start the main server:
+2. **Set up environment**:
 ```bash
-poetry run python3 content_gpt_backend/main.py
+poetry install
+cp .env.example .env  # Configure your environment variables
 ```
 
-## Docker Deployment
+3. **Start dependencies**:
+```bash
+docker-compose up -d redis postgres
+```
 
-1. **Build and run the Docker containers**:
-   ```bash
-   docker-compose up --build
-   ```
+4. **Run migrations**:
+```bash
+poetry run alembic upgrade head
+```
 
-2. **Access the application**:
-   Visit `http://localhost:8000` in your browser.
+5. **Start the application**:
+```bash
+poetry run uvicorn api.main:app --reload
+```
 
-## Testing
+### Docker Deployment
 
-Run tests to ensure everything works as expected:
+```bash
+docker-compose up --build
+```
+
+## 📚 API Documentation
+
+Once running, access:
+- Interactive API docs: `http://localhost:8000/docs`
+- OpenAPI spec: `http://localhost:8000/openapi.json`
+
+## 🧪 Testing
+
+Run the test suite:
 ```bash
 poetry run pytest
 ```
 
-## Contribution Guidelines
+With coverage:
+```bash
+poetry run pytest --cov=api --cov-report=html
+```
 
-Contributions are welcome! Please follow these steps:
+## 🤝 Contributing
 
-1. Fork the repository.
-2. Create a new feature branch (`git checkout -b feature/your-feature`).
-3. Commit your changes (`git commit -m "Add new feature"`).
-4. Push to the branch (`git push origin feature/your-feature`).
-5. Create a pull request.
+1. Fork the repository
+2. Create your feature branch
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. Run tests and lint
+   ```bash
+   poetry run pytest
+   poetry run flake8
+   ```
+4. Commit your changes
+5. Push and create a Pull Request
 
+## 📈 Performance Monitoring
+
+Monitor your deployment:
+- Application metrics: `/metrics`
+- Health check: `/health`
+- Status page: https://status.blogwise-ai.com
+
+## 🔐 Security
+
+Report security vulnerabilities to security@blogwise-ai.com
+
+## 📄 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+
+## 🙏 Acknowledgments
+
+- [OpenAI GPT-3](https://openai.com) for language model inspiration
+- [FastAPI](https://fastapi.tiangolo.com/) for the amazing web framework
+- [Celery](https://docs.celeryproject.org/) for distributed task processing
+
+---
