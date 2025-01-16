@@ -1,0 +1,30 @@
+
+version: '3.8'
+services:
+  mongodb:
+    image: mongo
+    container_name: database
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./db_data:/data/db
+    # networks:
+    #   - content_gpt
+  redis_server:
+    container_name: Redis
+    image: redis:6.2-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data
+    # networks:
+    #   - content_gpt
+volumes:
+  db_data:
+
+# networks:
+#   content_gpt:
+#     driver: bridge
