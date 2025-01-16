@@ -7,8 +7,6 @@
 
 BlogWise AI is an intelligent content generation platform that creates personalized blog posts using state-of-the-art AI algorithms. By analyzing trending topics and user preferences, it delivers engaging, contextually relevant content at scale.
 
-[Live Demo](https://blogwise-ai.demo.com) | [Documentation](https://docs.blogwise-ai.com) | [API Reference](https://api.blogwise-ai.com)
-
 ## ✨ Features
 
 - 🤖 **AI-Powered Content**: Advanced NLP models for high-quality content generation
@@ -33,7 +31,7 @@ graph LR
 ## 🛠️ Tech Stack
 
 - **Backend**: FastAPI, Python 3.8+
-- **AI/ML**: TensorFlow, spaCy, Hugging Face Transformers
+- **AI/ML**: TensorFlow, spaCy, Hugging Face Transformers, OpenAI
 - **Task Queue**: Celery, Redis
 - **Database**: PostgreSQL
 - **Infrastructure**: Docker, Docker Compose
@@ -115,18 +113,6 @@ Once running, access:
 - Interactive API docs: `http://localhost:8000/docs`
 - OpenAPI spec: `http://localhost:8000/openapi.json`
 
-## 🧪 Testing
-
-Run the test suite:
-```bash
-poetry run pytest
-```
-
-With coverage:
-```bash
-poetry run pytest --cov=api --cov-report=html
-```
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -134,30 +120,15 @@ poetry run pytest --cov=api --cov-report=html
    ```bash
    git checkout -b feature/amazing-feature
    ```
-3. Run tests and lint
-   ```bash
-   poetry run pytest
-   poetry run flake8
-   ```
-4. Commit your changes
-5. Push and create a Pull Request
 
-## 📈 Performance Monitoring
-
-Monitor your deployment:
-- Application metrics: `/metrics`
-- Health check: `/health`
-- Status page: https://status.blogwise-ai.com
-
-## 🔐 Security
-
-Report security vulnerabilities to security@blogwise-ai.com
+3. Commit your changes
+4. Push and create a Pull Request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [OpenAI GPT-3](https://openai.com) for language model inspiration
 - [FastAPI](https://fastapi.tiangolo.com/) for the amazing web framework
